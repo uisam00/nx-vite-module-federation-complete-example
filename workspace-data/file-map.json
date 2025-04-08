@@ -1,0 +1,187 @@
+{
+  "version": "6.0",
+  "nxVersion": "20.7.2",
+  "pathMappings": {},
+  "nxJsonPlugins": [
+    {
+      "name": "@nx/js/typescript",
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
+        },
+        "build": {
+          "targetName": "build",
+          "configName": "tsconfig.lib.json",
+          "buildDepsName": "build-deps",
+          "watchDepsName": "watch-deps"
+        }
+      }
+    },
+    {
+      "name": "@nx/react/router-plugin",
+      "options": {
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "startTargetName": "start",
+        "watchDepsTargetName": "watch-deps",
+        "buildDepsTargetName": "build-deps",
+        "typecheckTargetName": "typecheck"
+      }
+    },
+    {
+      "name": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "name": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "devTargetName": "dev",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static",
+        "typecheckTargetName": "typecheck",
+        "buildDepsTargetName": "build-deps",
+        "watchDepsTargetName": "watch-deps"
+      }
+    }
+  ],
+  "fileMap": {
+    "projectFileMap": {
+      "dashboard": [
+        {
+          "file": "apps/dashboard/eslint.config.mjs",
+          "hash": "8789163670399984295"
+        },
+        {
+          "file": "apps/dashboard/index.html",
+          "hash": "8586766377946887913"
+        },
+        {
+          "file": "apps/dashboard/package.json",
+          "hash": "15041495210665812111"
+        },
+        {
+          "file": "apps/dashboard/public/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "apps/dashboard/src/app/app.module.css",
+          "hash": "8887387885984320532"
+        },
+        {
+          "file": "apps/dashboard/src/app/app.spec.tsx",
+          "hash": "13269251997852476529"
+        },
+        {
+          "file": "apps/dashboard/src/app/app.tsx",
+          "hash": "6615910809982461605"
+        },
+        {
+          "file": "apps/dashboard/src/app/nx-welcome.tsx",
+          "hash": "2348102959109701629"
+        },
+        {
+          "file": "apps/dashboard/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/dashboard/src/main.tsx",
+          "hash": "6494962159756833686",
+          "deps": [
+            "npm:react",
+            "npm:react-dom"
+          ]
+        },
+        {
+          "file": "apps/dashboard/src/styles.css",
+          "hash": "5195668842064076916"
+        },
+        {
+          "file": "apps/dashboard/tsconfig.app.json",
+          "hash": "8284732165986189960"
+        },
+        {
+          "file": "apps/dashboard/tsconfig.json",
+          "hash": "9240132813632071828"
+        },
+        {
+          "file": "apps/dashboard/tsconfig.spec.json",
+          "hash": "16305818908628027731"
+        },
+        {
+          "file": "apps/dashboard/vite.config.ts",
+          "hash": "16163422245693304294",
+          "deps": [
+            "npm:vite"
+          ]
+        }
+      ]
+    },
+    "nonProjectFiles": [
+      {
+        "file": ".editorconfig",
+        "hash": "5443105041930014821"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "15742232099179730042"
+      },
+      {
+        "file": ".npmrc",
+        "hash": "1880664178033616490"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "14688272390704683536"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "16267754514737964994"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "16884713733442577066"
+      },
+      {
+        "file": "README.md",
+        "hash": "15997479199687696061"
+      },
+      {
+        "file": "eslint.config.mjs",
+        "hash": "14755833654515998580"
+      },
+      {
+        "file": "nx.json",
+        "hash": "1651458992025110135"
+      },
+      {
+        "file": "package.json",
+        "hash": "6210385999038464025"
+      },
+      {
+        "file": "pnpm-lock.yaml",
+        "hash": "18273259162062677528"
+      },
+      {
+        "file": "pnpm-workspace.yaml",
+        "hash": "13800489465155511935"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "18132073024976155609"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "17765178328040031681"
+      },
+      {
+        "file": "vitest.workspace.ts",
+        "hash": "4665328684042819579"
+      }
+    ]
+  }
+}
