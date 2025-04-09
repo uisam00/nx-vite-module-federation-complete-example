@@ -1,7 +1,6 @@
 // Import type definitions for Module Federation and Vite's dependency optimization.
 import { ModuleFederationOptions } from '@module-federation/vite/lib/utils/normalizeModuleFederationOptions';
 import { DepOptimizationOptions } from 'vite';
-
 /**
  * ModuleFederationConfig
  * -----------------------
@@ -81,3 +80,5 @@ export const OptimizeDepsConfig: DepOptimizationOptions = {
     'zustand',
   ],
 };
+
+export default ModuleFederationConfig;

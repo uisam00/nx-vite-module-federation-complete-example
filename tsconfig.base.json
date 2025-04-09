@@ -39,7 +39,7 @@
 
       // module loader aliases
       "@nx-vite-module-federation-complete-example/moduleLoader": [
-        "libraries/shared/moduleLoader/index.federation.ts"
+        "libraries/shared/moduleLoader/index.ts"
       ]
     }
   },
