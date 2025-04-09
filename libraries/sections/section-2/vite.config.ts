@@ -5,9 +5,46 @@ import dts from 'vite-plugin-dts';
 import * as path from 'path';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
+import { federation } from '@module-federation/vite';
+import topLevelAwait from 'vite-plugin-top-level-await';
+import {
+  ModuleFederationConfig,
+  OptimizeDepsConfig,
+} from './federation.config';
+
+// load environment variables from .env file for federation
+let defineEnv: any;
+if (process.env.VITE_MODULE_FEDERATION_ENABLED === 'true') {
+  defineEnv = Object.keys(process.env).reduce((acc, key) => {
+    acc[`process.env.${key}`] = JSON.stringify(process.env[key]);
+    return acc;
+  }, {});
+}
+
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../../node_modules/.vite/libraries/sections/section-2',
+
+  server: {
+    port: 4202,
+    host: 'localhost',
+  },
+  preview: {
+    port: 4302,
+    host: 'localhost',
+  },
+
+  // so that remote can get the static resources from its own address and not the host address
+  ...(process.env.VITE_MODULE_FEDERATION_ENABLED === 'true' && { base: './' }),
+
+  ...(process.env.VITE_MODULE_FEDERATION_ENABLED === 'true' && {
+    // Use the predefined dependency optimization settings from OptimizeDepsConfig.
+    optimizeDeps: OptimizeDepsConfig,
+
+    // load environment variables from .env file for federation
+    define: defineEnv,
+  }),
+
   plugins: [
     react(),
 
@@ -20,6 +57,19 @@ export default defineConfig(() => ({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
     }),
+
+    ...(process.env.VITE_MODULE_FEDERATION_ENABLED === 'true'
+      ? [
+          // Configures Module Federation using the specified configuration.
+          // This enables module sharing between the host and remote applications.
+          federation(ModuleFederationConfig),
+
+          // Enables top-level await support in modules.
+          // - promiseExportName: Sets the export name for the top-level await promise in each chunk.
+          // - promiseImportName: Generates unique import names for these promises.
+          topLevelAwait(),
+        ]
+      : []),
   ],
   // Uncomment this if you are using workers.
   // worker: {
@@ -28,35 +78,43 @@ export default defineConfig(() => ({
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
-    outDir: './dist',
+    outDir: '../../../dist/libraries/sections/section-2',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
     },
-    lib: {
-      // Could also be a dictionary or array of multiple entry points.
-      entry: 'src/index.ts',
-      name: '@nx-vite-module-federation-complete-example/section-2',
-      fileName: 'index',
-      // Change this to the formats you want to support.
-      // Don't forget to update your package.json as well.
-      formats: ['es' as const],
-    },
+
+    // if we where in federation mode we will not use lib mode
+    ...(process.env.VITE_MODULE_FEDERATION_ENABLED === 'true'
+      ? {}
+      : {
+          lib: {
+            // Could also be a dictionary or array of multiple entry points.
+            entry: 'src/index.ts',
+            name: '@nx-vite-module-federation-complete-example/section-2',
+            fileName: 'index',
+            // Change this to the formats you want to support.
+            // Don't forget to update your package.json as well.
+            formats: ['es' as const],
+          },
+        }),
+
     rollupOptions: {
-      // External packages that should not be bundled into your library.
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
-    },
-  },
-  test: {
-    watch: false,
-    globals: true,
-    environment: 'jsdom',
-    include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    reporters: ['default'],
-    coverage: {
-      reportsDirectory: './test-output/vitest/coverage',
-      provider: 'v8' as const,
+      ...(process.env.VITE_MODULE_FEDERATION_ENABLED === 'true'
+        ? {
+            // this config is necessary for build with federation
+            input: {
+              index: 'index.html',
+            },
+          }
+        : {
+            input: {
+              index: 'src/index.ts',
+            },
+            // External packages that should not be bundled into your library.
+            external: ['react', 'react-dom', 'react/jsx-runtime'],
+          }),
     },
   },
 }));

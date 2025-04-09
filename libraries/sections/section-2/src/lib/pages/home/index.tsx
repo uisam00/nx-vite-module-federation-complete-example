@@ -18,13 +18,13 @@ const Home = () => {
           justifyContent: 'center',
         }}
       >
-        <Typography variant="h1">Section 2</Typography>
+        <Typography variant="h4">
+          Section 2 (Loaded Dynamically With Module Federation)
+        </Typography>
 
         <Stack direction="row" spacing={3}>
           <Link to="/section-1">Click here to go to section 1 </Link>
-          <Link to="/single-page-app">
-            Click here to go to Single Page App{' '}
-          </Link>
+          <Link to="/">Click here to go to Single Page App </Link>
         </Stack>
 
         <Stack direction="row" spacing={3}>

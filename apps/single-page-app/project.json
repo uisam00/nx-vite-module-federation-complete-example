@@ -1,0 +1,9 @@
+{
+  "name": "single-page-app",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/single-page-app/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project single-page-app --web",
+  "targets": {}
+}

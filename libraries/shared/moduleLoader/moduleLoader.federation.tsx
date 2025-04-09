@@ -1,45 +1,46 @@
 import { RemoteFallBack } from '../ui/src';
-import {
-  init,
-  loadRemote,
-  registerRemotes,
-} from '@module-federation/enhanced/runtime';
+import { init, loadRemote } from '@module-federation/enhanced/runtime';
 import React from 'react';
 import { lazy } from 'react';
+import { initRemoteDynamically } from '../utils/initRemoteDynamically';
 
 // TIPS: initializing remotes statically  at runtime
 init({
   name: 'SinglePageApp',
   remotes: [
     {
-      entry: 'http://127.0.0.1:8084/innovation-ecosystem-entry.js',
+      // this is the address of preview of section 1 ** after federation build **
+      entry: 'http://localhost:4301/section-1-entry.js',
       name: 'Section1',
       type: 'module',
     },
   ],
 });
 
-// TIPS: initializing remotes dynamically  at runtime
-export function initRemoteDynamically(
-  remoteName: 'Section1' | 'Section2',
-  entryUrl: string
-) {
-  registerRemotes([
-    {
-      entry: entryUrl,
-      name: remoteName,
-      type: 'module',
-    },
-  ]);
-}
-
 // TIPS: load remotes at runtime
 function loadFederationRemote(remoteName: 'Section1' | 'Section2') {
   return lazy(async () => {
     try {
-      return (await loadRemote(`${remoteName}/${remoteName}Remote`)) as {
-        default: any;
-      };
+      switch (remoteName) {
+        case 'Section1':
+          // load section 1 statically
+          return (await loadRemote(`${remoteName}/${remoteName}Remote`)) as {
+            default: any;
+          };
+
+        // we are loading section 2 dynamically
+        // you can later get the url from api or any other source
+        case 'Section2':
+          initRemoteDynamically(
+            remoteName,
+            'http://localhost:4302/section-2-entry.js'
+          );
+          return (await loadRemote(`${remoteName}/${remoteName}Remote`)) as {
+            default: any;
+          };
+        default:
+          throw new Error(`Unknown remoteName: ${remoteName}`);
+      }
     } catch (error) {
       console.error(error);
       return {

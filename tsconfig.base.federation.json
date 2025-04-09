@@ -20,21 +20,21 @@
     "paths": {
       // shared aliases
       "@nx-vite-module-federation-complete-example/shared-stores": [
-        "libraries/shared/stores/index.ts"
+        "libraries/shared/stores/index.federation.ts"
       ],
       "@nx-vite-module-federation-complete-example/shared-ui": [
-        "libraries/shared/ui/src/index.ts"
+        "libraries/shared/ui/src/index.federation.ts"
       ],
       "@nx-vite-module-federation-complete-example/shared-utils": [
-        "libraries/shared/utils/index.ts"
+        "libraries/shared/utils/index.federation.ts"
       ],
 
       // library aliases
       "@nx-vite-module-federation-complete-example/section-1": [
-        "libraries/sections/section-1/src/index.ts"
+        "libraries/sections/section-1/src/index.federation.ts"
       ],
       "@nx-vite-module-federation-complete-example/section-2": [
-        "libraries/sections/section-2/src/index.ts"
+        "libraries/sections/section-2/src/index.federation.ts"
       ],
 
       // module loader aliases
