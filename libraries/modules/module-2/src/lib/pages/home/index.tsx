@@ -19,11 +19,11 @@ const Home = () => {
         }}
       >
         <Typography variant="h4">
-          Module 1 (Loaded Statically With Module Federation)
+          Module 2 (Loaded Dynamically With Module Federation)
         </Typography>
 
         <Stack direction="row" spacing={3}>
-          <Link to="/module-2">Click here to go to section 2 </Link>
+          <Link to="/module-1">Click here to go to section 1 </Link>
           <Link to="/">Click here to go to Single Page App </Link>
         </Stack>
 

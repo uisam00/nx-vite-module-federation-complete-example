@@ -21,8 +21,8 @@ const Home = () => {
         <Typography variant="h1">Single Page App</Typography>
 
         <Stack direction="row" spacing={3}>
-          <Link to="/section-1">Click here to go to section 1 </Link>
-          <Link to="/section-2">Click here to go to section 2 </Link>
+          <Link to="/module-1">Click here to go to section 1 </Link>
+          <Link to="/module-2">Click here to go to section 2 </Link>
         </Stack>
 
         <Stack direction="row" spacing={3}>

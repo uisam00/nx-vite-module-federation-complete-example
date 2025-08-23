@@ -1,14 +1,14 @@
-import { Section1 as Section1Local, Section2 as Section2Local } from './moduleLoader'
-import { Section1 as Section1Federation, Section2 as Section2Federation } from './moduleLoader.federation'
+import { Module1 as Module1Local, Module2 as Module2Local } from './moduleLoader'
+import { Module1 as Module1Federation, Module2 as Module2Federation } from './moduleLoader.federation'
 
-const Section1 =
+const Module1 =
   import.meta.env.VITE_MODULE_FEDERATION_ENABLED === 'true'
-    ? Section1Federation
-    : Section1Local
+    ? Module1Federation
+    : Module1Local
 
-const Section2 =
+const Module2 =
   import.meta.env.VITE_MODULE_FEDERATION_ENABLED === 'true'
-    ? Section2Federation
-    : Section2Local
+    ? Module2Federation
+    : Module2Local
 
-export { Section1, Section2 }
+export { Module1, Module2 }

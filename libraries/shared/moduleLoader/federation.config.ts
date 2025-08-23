@@ -1,4 +1,4 @@
 export const federationConfig = {
-  remoteName: 'section-2',
-  entry: 'http://localhost:4204/section-2-entry.js',
+  remoteName: 'module-2',
+  entry: 'http://localhost:4204/module-2-entry.js',
 }

@@ -2,7 +2,7 @@
 import { registerRemotes } from '@module-federation/enhanced/runtime';
 
 export function initRemoteDynamically(
-  remoteName: 'Section1' | 'Section2',
+  remoteName: 'Module1' | 'Module2',
   entryUrl: string
 ) {
   registerRemotes([

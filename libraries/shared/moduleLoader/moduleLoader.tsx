@@ -3,17 +3,17 @@ import { RemoteFallBack } from '../ui/src';
 import { lazy } from 'react';
 
 // TIPS: comment out to use nx library for development
-function getLibrary(remoteName: 'Section1' | 'Section2') {
+function getLibrary(remoteName: 'Module1' | 'Module2') {
   return lazy(async () => {
     try {
       switch (remoteName) {
-        case 'Section1':
+        case 'Module1':
           return await import(
-            '@nx-vite-module-federation-complete-example/section-1'
+            '@nx-vite-module-federation-complete-example/module-1'
           );
-        case 'Section2':
+        case 'Module2':
           return await import(
-            '@nx-vite-module-federation-complete-example/section-2'
+            '@nx-vite-module-federation-complete-example/module-2'
           );
         default:
           throw new Error(`Unknown remoteName: ${remoteName}`);
@@ -29,7 +29,7 @@ function getLibrary(remoteName: 'Section1' | 'Section2') {
 }
 
 // TIPS: comment out to use nx library for development
-const Section1 = getLibrary('Section1');
-const Section2 = getLibrary('Section2');
+const Module1 = getLibrary('Module1');
+const Module2 = getLibrary('Module2');
 
-export { Section1, Section2 };
+export { Module1, Module2 };

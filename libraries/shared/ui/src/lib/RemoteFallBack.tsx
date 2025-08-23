@@ -3,7 +3,7 @@ import { Box, Stack, Typography } from '@mui/material';
 export const RemoteFallBack = ({
   remoteName,
 }: {
-  remoteName: 'Section1' | 'Section2';
+  remoteName: 'Module1' | 'Module2';
 }) => {
   return (
     <Box sx={{ width: '100%', height: '100vh' }}>
