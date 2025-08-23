@@ -10,7 +10,7 @@ export function Section2() {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
-        <Route path="" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="section-1-page-1" element={<Page1 />} />
         <Route path="section-1-page-2" element={<Page2 />} />
       </Routes>

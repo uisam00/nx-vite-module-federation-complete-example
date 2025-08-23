@@ -33,7 +33,7 @@ function loadFederationRemote(remoteName: 'Section1' | 'Section2') {
         case 'Section2':
           initRemoteDynamically(
             remoteName,
-            'http://localhost:4302/section-2-entry.js'
+            'http://localhost:4204/section-2-entry.js'
           );
           return (await loadRemote(`${remoteName}/${remoteName}Remote`)) as {
             default: any;
