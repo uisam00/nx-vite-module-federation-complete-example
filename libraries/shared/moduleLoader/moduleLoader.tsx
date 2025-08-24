@@ -1,6 +1,9 @@
 import React from 'react';
 import { RemoteFallBack } from '../ui/src';
 import { lazy } from 'react';
+import { ModuleConfig } from './module.config';
+import { initRemoteDynamically } from '../utils/initRemoteDynamically';
+import { loadRemote } from '@module-federation/enhanced/runtime';
 
 // TIPS: comment out to use nx library for development
 function getLibrary(remoteName: 'Module1' | 'Module2', entry: () => Promise<any>) {
@@ -17,12 +20,28 @@ function getLibrary(remoteName: 'Module1' | 'Module2', entry: () => Promise<any>
   });
 }
 
-// TIPS: comment out to use nx library for development
-const Module1 = getLibrary('Module1',
-  async () => await import('@nx-vite-module-federation-complete-example/module-1')
-);
-const Module2 = getLibrary('Module2',
-  async () => await import('@nx-vite-module-federation-complete-example/module-2')
-);
+function loadFederationRemote(remoteName: 'Module1' | 'Module2',remoteEntry: string) {
+  return lazy(async () => {
+    try {
+      initRemoteDynamically(remoteName, remoteEntry);
+      return (await loadRemote(`${remoteName}/${remoteName}Remote`)) as {
+        default: any;
+      };
+    } catch (error) {
+      console.error(error);
+      return {
+        default: (props) => (
+          <RemoteFallBack {...props} remoteName={remoteName} />
+        ),
+      };
+    }
+  });
+}
 
-export { Module1, Module2 };
+export const makeModuleInstance = (remoteName: 'Module1' | 'Module2', config:ModuleConfig) => {
+  if (config.isRemote) {
+    return loadFederationRemote(remoteName, config.remoteEntry!);
+  }
+  return getLibrary(remoteName, config.localEntry);
+};
+

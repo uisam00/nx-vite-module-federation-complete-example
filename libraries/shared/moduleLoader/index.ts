@@ -1,14 +1,7 @@
-import { Module1 as Module1Local, Module2 as Module2Local } from './moduleLoader'
-import { Module1 as Module1Federation, Module2 as Module2Federation } from './moduleLoader.federation'
+import { makeModuleInstance } from './moduleLoader';
+import { MODULES_CONFIG } from './module.config'
 
-const Module1 =
-  import.meta.env.VITE_MODULE_FEDERATION_ENABLED === 'true'
-    ? Module1Federation
-    : Module1Local
-
-const Module2 =
-  import.meta.env.VITE_MODULE_FEDERATION_ENABLED === 'true'
-    ? Module2Federation
-    : Module2Local
+const Module1 = makeModuleInstance('Module1', MODULES_CONFIG.Module1);
+const Module2 = makeModuleInstance('Module2', MODULES_CONFIG.Module2);
 
 export { Module1, Module2 }
