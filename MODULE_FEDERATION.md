@@ -34,6 +34,21 @@ npx nx serve single-page-app  # Port 4200
 
 **Result**: Module1 loads statically, Module2 loads via Module Federation.
 
+## Module Build and Preview
+
+```bash
+# Build modules for federation
+npx nx build module-1
+npx nx build module-2
+
+# Preview modules with federation
+npx nx preview module-1  # Port 4301
+npx nx preview module-2  # Port 4302
+
+# After preview, run the main app with correct env
+npx nx serve single-page-app  # Port 4200
+```
+
 ## Use Cases
 
 ### 1. Scalable Projects
