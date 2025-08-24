@@ -14,11 +14,13 @@ import {
 
 // load environment variables from .env file for federation
 let defineEnv: any;
-if (process.env.VITE_MODULE2_IS_REMOTE === 'true') {
-  defineEnv = Object.keys(process.env).reduce((acc, key) => {
-    acc[`process.env.${key}`] = JSON.stringify(process.env[key]);
-    return acc;
-  }, {});
+const isRemote = process.env.VITE_MODULE2_IS_REMOTE?.trim() === 'true';
+
+if (isRemote) {
+  defineEnv = {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
+    'process.env.VITE_MODULE2_IS_REMOTE': JSON.stringify(process.env.VITE_MODULE2_IS_REMOTE),
+  };
 }
 
 export default defineConfig(() => ({
@@ -35,9 +37,9 @@ export default defineConfig(() => ({
   },
 
   // so that remote can get the static resources from its own address and not the host address
-  ...(process.env.VITE_MODULE2_IS_REMOTE === 'true' && { base: './' }),
+  ...(isRemote && { base: './' }),
 
-  ...(process.env.VITE_MODULE2_IS_REMOTE === 'true' && {
+  ...(isRemote && {
     // Use the predefined dependency optimization settings from OptimizeDepsConfig.
     optimizeDeps: OptimizeDepsConfig,
 
@@ -58,7 +60,7 @@ export default defineConfig(() => ({
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
     }),
 
-    ...(process.env.VITE_MODULE2_IS_REMOTE === 'true'
+    ...(isRemote
       ? [
           // Configures Module Federation using the specified configuration.
           // This enables module sharing between the host and remote applications.
@@ -83,10 +85,12 @@ export default defineConfig(() => ({
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
+      include: [/node_modules/],
+      exclude: [/react-dom/],
     },
 
     // if we where in federation mode we will not use lib mode
-    ...(process.env.VITE_MODULE2_IS_REMOTE === 'true'
+    ...(isRemote
       ? {}
       : {
           lib: {
@@ -101,7 +105,7 @@ export default defineConfig(() => ({
         }),
 
     rollupOptions: {
-      ...(process.env.VITE_MODULE2_IS_REMOTE === 'true'
+      ...(isRemote
         ? {
             // this config is necessary for build with federation
             input: {
@@ -113,7 +117,16 @@ export default defineConfig(() => ({
               index: 'src/index.ts',
             },
             // External packages that should not be bundled into your library.
-            external: ['react', 'react-dom', 'react/jsx-runtime'],
+            external: [
+              'react', 
+              'react-dom', 
+              'react/jsx-runtime', 
+              'react-router-dom',
+              '@mui/material',
+              '@emotion/react',
+              '@emotion/styled',
+              'zustand'
+            ],
           }),
     },
   },
