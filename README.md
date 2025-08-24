@@ -8,24 +8,74 @@
 
 > **Module Federation**: See [MODULE_FEDERATION.md](./MODULE_FEDERATION.md) for usage examples.
 
+## Use Cases
+
+This project demonstrates a **scalable architecture** that starts as a monorepo and can easily evolve into micro-frontends, showcasing several key architectural patterns:
+
+### 🚀 **Scalable Architecture Journey**
+- **Phase 1 - Monorepo**: Start with all modules as static libraries in a single repository
+- **Phase 2 - Hybrid**: Mix static and remote modules as teams grow
+- **Phase 3 - Micro-Frontends**: Extract modules to separate repositories with independent deployments
+- **Zero Refactoring**: Same codebase supports all phases through environment configuration
+
+### 🏗️ **Module Federation Architecture**
+- **Independent Module Development**: Module1 and Module2 can be developed, built, and deployed independently
+- **Dynamic Loading**: Modules can be loaded either statically (as libraries) or dynamically (via Module Federation)
+- **Shared State Management**: Zustand store demonstrates state sharing across modules
+- **Shared UI Components**: Common UI components (Loading, CountView) shared between modules
+
+### 🔄 **Flexible Deployment Strategies**
+- **Hybrid Loading**: Mix static and remote modules in the same application
+- **Environment-Based Configuration**: Control module loading behavior via environment variables
+- **Fallback Handling**: Graceful degradation when remote modules fail to load
+- **Hot Module Replacement**: Development experience with live reloading
+
+### 🎯 **Real-World Scenarios**
+
+#### **Startup Growth Strategy**
+- **Start**: Monorepo with all modules static (simple setup, fast development)
+- **Scale**: Gradually migrate modules to remote deployment as teams grow
+- **Maintain**: Shared dependencies and state management across all phases
+- **Benefit**: Independent release cycles without architectural rewrites
+
+#### **Legacy System Integration**
+- Integrate new React modules into existing applications
+- Share authentication, routing, and state management
+- Maintain consistent UI/UX across different technology stacks
+- Enable gradual migration without big-bang rewrites
+
+#### **Multi-Team Development**
+- Independent teams can own and deploy their modules
+- Shared design system and component library
+- Centralized routing and navigation
+- Consistent development experience across teams
+
+### 🛠️ **Technical Features**
+- **React 19 + TypeScript**: Modern React with full type safety
+- **Material-UI**: Consistent design system
+- **React Router**: Client-side routing with module integration
+- **Zustand**: Lightweight state management
+- **Vite**: Fast build tooling with Module Federation support
+- **Nx**: Monorepo management with intelligent caching
+
 ## Run tasks
 
 To run the dev server for your app, use:
 
 ```sh
-npx nx serve dashboard
+npx nx serve single-page-app
 ```
 
 To create a production bundle:
 
 ```sh
-npx nx build dashboard
+npx nx build single-page-app
 ```
 
 To see all available targets to run for a project, run:
 
 ```sh
-npx nx show project dashboard
+npx nx show project single-page-app
 ```
 
 These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
@@ -41,13 +91,13 @@ Use the plugin's generator to create new projects.
 To generate a new application, use:
 
 ```sh
-npx nx g @nx/react:app demo
+npx nx g @nx/react:app apps/demo
 ```
 
 To generate a new library, use:
 
 ```sh
-npx nx g @nx/react:lib mylib
+npx nx g @nx/react:lib libraries/mylib
 ```
 
 You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
