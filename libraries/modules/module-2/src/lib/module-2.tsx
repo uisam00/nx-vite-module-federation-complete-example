@@ -11,8 +11,8 @@ export function Module2() {
     <Suspense fallback={<Loading />}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="module-1-page-1" element={<Page1 />} />
-        <Route path="module-1-page-2" element={<Page2 />} />
+        <Route path="module-2-page-1" element={<Page1 />} />
+        <Route path="module-2-page-2" element={<Page2 />} />
       </Routes>
     </Suspense>
   );

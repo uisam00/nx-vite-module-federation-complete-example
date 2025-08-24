@@ -14,7 +14,7 @@ import {
 
 // load environment variables from .env file for federation
 let defineEnv: any;
-if (process.env.VITE_MODULE_FEDERATION_ENABLED === 'true') {
+if (process.env.VITE_MODULE2_IS_REMOTE === 'true') {
   defineEnv = Object.keys(process.env).reduce((acc, key) => {
     acc[`process.env.${key}`] = JSON.stringify(process.env[key]);
     return acc;
@@ -35,9 +35,9 @@ export default defineConfig(() => ({
   },
 
   // so that remote can get the static resources from its own address and not the host address
-  ...(process.env.VITE_MODULE_FEDERATION_ENABLED === 'true' && { base: './' }),
+  ...(process.env.VITE_MODULE2_IS_REMOTE === 'true' && { base: './' }),
 
-  ...(process.env.VITE_MODULE_FEDERATION_ENABLED === 'true' && {
+  ...(process.env.VITE_MODULE2_IS_REMOTE === 'true' && {
     // Use the predefined dependency optimization settings from OptimizeDepsConfig.
     optimizeDeps: OptimizeDepsConfig,
 
@@ -58,7 +58,7 @@ export default defineConfig(() => ({
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
     }),
 
-    ...(process.env.VITE_MODULE_FEDERATION_ENABLED === 'true'
+    ...(process.env.VITE_MODULE2_IS_REMOTE === 'true'
       ? [
           // Configures Module Federation using the specified configuration.
           // This enables module sharing between the host and remote applications.
@@ -86,7 +86,7 @@ export default defineConfig(() => ({
     },
 
     // if we where in federation mode we will not use lib mode
-    ...(process.env.VITE_MODULE_FEDERATION_ENABLED === 'true'
+    ...(process.env.VITE_MODULE2_IS_REMOTE === 'true'
       ? {}
       : {
           lib: {
@@ -101,7 +101,7 @@ export default defineConfig(() => ({
         }),
 
     rollupOptions: {
-      ...(process.env.VITE_MODULE_FEDERATION_ENABLED === 'true'
+      ...(process.env.VITE_MODULE2_IS_REMOTE === 'true'
         ? {
             // this config is necessary for build with federation
             input: {
