@@ -44,5 +44,10 @@
       ]
     }
   },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "./vite.d.ts"
+  ],
   "exclude": ["node_modules", "tmp"]
 }
