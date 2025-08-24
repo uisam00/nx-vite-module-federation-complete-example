@@ -9,13 +9,15 @@ export type ModuleConfig = {
 
 export const MODULES_CONFIG: Record<Modules, ModuleConfig> = {
   Module1: {
-    isRemote: false,
+    isRemote: import.meta.env.VITE_MODULE1_IS_REMOTE === 'true',
+    remoteName: import.meta.env.VITE_MODULE1_REMOTE_NAME,
+    remoteEntry: import.meta.env.VITE_MODULE1_REMOTE_ENTRY,
     localEntry: async () => await import('@nx-vite-module-federation-complete-example/module-1'),
   },
   Module2: {
-    isRemote: true,
+    isRemote: import.meta.env.VITE_MODULE2_IS_REMOTE === 'true',
+    remoteName: import.meta.env.VITE_MODULE2_REMOTE_NAME,
+    remoteEntry: import.meta.env.VITE_MODULE2_REMOTE_ENTRY,
     localEntry: async () => await import('@nx-vite-module-federation-complete-example/module-2'),
-    remoteName: 'Module2',
-    remoteEntry: 'http://localhost:4202/module-2-entry.js',
   },
 };
