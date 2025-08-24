@@ -10,12 +10,12 @@
 
 ## Use Cases
 
-This project demonstrates a **scalable architecture** that starts as a monorepo and can easily evolve into micro-frontends, showcasing several key architectural patterns:
+This project demonstrates a **scalable architecture** that starts as a monorepo and can easily evolve into micro-frontends (either within the monorepo or as separate repositories), showcasing several key architectural patterns:
 
 ### 🚀 **Scalable Architecture Journey**
 - **Phase 1 - Monorepo**: Start with all modules as static libraries in a single repository
 - **Phase 2 - Hybrid**: Mix static and remote modules as teams grow
-- **Phase 3 - Micro-Frontends**: Extract modules to separate repositories with independent deployments
+- **Phase 3 - Flexible**: Choose between monorepo with micro-frontends or separate repositories
 - **Zero Refactoring**: Same codebase supports all phases through environment configuration
 
 ### 🏗️ **Module Federation Architecture**
