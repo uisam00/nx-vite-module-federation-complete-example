@@ -1,8 +1,8 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { ShowStyledCount } from '@nx-vite-module-federation-complete-example/shared-ui';
-import { getStyledCount } from '@nx-vite-module-federation-complete-example/shared-utils';
-import { useCountStore } from '@nx-vite-module-federation-complete-example/shared-stores';
+import { ShowStyledCount } from '@shared-ui';
+import { getStyledCount } from '@shared-utils';
+import { useCountStore } from '@shared-stores';
 
 const Home = () => {
   const { increase, decrease, count } = useCountStore();

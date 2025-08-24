@@ -2,9 +2,9 @@ import { Route, Routes } from 'react-router-dom';
 import {
   Module1,
   Module2,
-} from '@nx-vite-module-federation-complete-example/moduleLoader';
+} from '@moduleLoader';
 import { lazy, Suspense } from 'react';
-import { Loading } from '@nx-vite-module-federation-complete-example/shared-ui';
+import { Loading } from '@shared-ui';
 
 export function App() {
   const Home = lazy(() => import('./pages/home'));

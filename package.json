@@ -1,5 +1,5 @@
 {
-  "name": "@nx-vite-module-federation-complete-example/source",
+  "name": "nx-vite-module-federation-complete-example",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {},

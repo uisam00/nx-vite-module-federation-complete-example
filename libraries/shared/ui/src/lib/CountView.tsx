@@ -1,13 +1,13 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { ShowStyledCount } from '@nx-vite-module-federation-complete-example/shared-ui';
-import { getStyledCount } from '@nx-vite-module-federation-complete-example/shared-utils';
-import { useCountStore } from '@nx-vite-module-federation-complete-example/shared-stores';
+import { ShowStyledCount } from '@shared-ui';
+import { getStyledCount } from '@shared-utils';
+import { useCountStore } from '@shared-stores';
 
 type Props = {
   title: string;
   isRemote: boolean;
-  linkTo: string;
+  linkTo: string[];
 };
 
 export const CountView = ({ title, isRemote, linkTo }: Props) => {
@@ -30,7 +30,11 @@ export const CountView = ({ title, isRemote, linkTo }: Props) => {
         </Typography>
 
         <Stack direction="row" spacing={3}>
-          <Link to={linkTo}>Click here to go to {linkTo} </Link>
+          {linkTo.map((link) => (
+            <Link key={link} to={link}>
+              Click here to go to {link}
+            </Link>
+          ))}
           <Link to="/">Click here to go to Single Page App </Link>
         </Stack>
 

@@ -20,26 +20,23 @@
     "types": ["vite/client"],
     "paths": {
       // shared aliases
-      "@nx-vite-module-federation-complete-example/shared-stores": [
+      "@shared-stores": [
         "libraries/shared/stores/index.ts"
       ],
-      "@nx-vite-module-federation-complete-example/shared-ui": [
+      "@shared-ui": [
         "libraries/shared/ui/src/index.ts"
       ],
-      "@nx-vite-module-federation-complete-example/shared-utils": [
+      "@shared-utils": [
         "libraries/shared/utils/index.ts"
       ],
 
       // library aliases
-      "@nx-vite-module-federation-complete-example/module-1": [
-        "libraries/modules/module-1/src/index.ts"
-      ],
-      "@nx-vite-module-federation-complete-example/module-2": [
-        "libraries/modules/module-2/src/index.ts"
+      "@modules/*": [
+        "libraries/modules/*/src/index.ts"
       ],
 
       // module loader aliases
-      "@nx-vite-module-federation-complete-example/moduleLoader": [
+      "@moduleLoader": [
         "libraries/shared/moduleLoader/index.ts"
       ]
     }

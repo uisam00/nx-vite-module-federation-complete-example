@@ -1,5 +1,5 @@
 {
-  "name": "@nx-vite-module-federation-complete-example/single-page-app",
+  "name": "@single-page-app",
   "version": "0.0.1",
   "private": true
 }

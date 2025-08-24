@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { Loading } from '@nx-vite-module-federation-complete-example/shared-ui';
+import { Loading } from '@shared-ui';
 
 export function Module1() {
   const Home = lazy(() => import('./pages/home'));

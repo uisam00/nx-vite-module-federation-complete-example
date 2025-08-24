@@ -1,5 +1,5 @@
 {
-  "name": "@nx-vite-module-federation-complete-example/module-1",
+  "name": "module-1",
   "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.js",
