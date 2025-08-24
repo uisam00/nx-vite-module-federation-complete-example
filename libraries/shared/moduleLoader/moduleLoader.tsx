@@ -5,7 +5,7 @@ import { ModuleConfig } from './module.config';
 import { initRemoteDynamically } from '../utils/initRemoteDynamically';
 import { loadRemote } from '@module-federation/enhanced/runtime';
 
-// TIPS: comment out to use nx library for development
+// TIP: comment out to use nx library for development
 function getLibrary(remoteName: 'Module1' | 'Module2', entry: () => Promise<any>) {
   return lazy(async () => {
     try {

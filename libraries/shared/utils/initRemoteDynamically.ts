@@ -1,4 +1,4 @@
-// TIPS: initializing remotes dynamically  at runtime
+// TIP: initializing remotes dynamically at runtime
 import { registerRemotes } from '@module-federation/enhanced/runtime';
 
 export function initRemoteDynamically(
