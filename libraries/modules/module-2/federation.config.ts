@@ -24,13 +24,13 @@ export const ModuleFederationConfig: ModuleFederationOptions = {
     './Module2Remote': './src/index.ts',
   },
 
-  remotes: {
-    SinglePageApp: {
-      entry: 'http://localhost:4200/single-page-app/single-page-app-entry.js',
-      name: 'SinglePageApp',
-      type: 'module',
-    },
-  },
+  // remotes: {
+  //  SinglePageApp: {
+  //    entry: 'http://localhost:4200/single-page-app/single-page-app-entry.js',
+  //    name: 'SinglePageApp',
+  //    type: 'module',
+  //  },
+  // },
 
   // Shared dependencies configuration.
   // Each dependency is marked as a singleton to ensure only one instance is loaded

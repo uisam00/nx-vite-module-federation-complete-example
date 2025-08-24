@@ -5,7 +5,7 @@ import { DepOptimizationOptions } from 'vite';
  * ModuleFederationConfig
  * -----------------------
  * This configuration sets up Module Federation for the remote container named
- * 'Innovation'. It defines how modules are shared between different builds
+ * 'SinglePageApp'. It defines how modules are shared between different builds
  * (host and remote) to ensure consistency and prevent duplicate library instances.
  */
 export const ModuleFederationConfig: ModuleFederationOptions = {
